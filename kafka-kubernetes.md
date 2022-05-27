@@ -1,5 +1,4 @@
 ![image](https://user-images.githubusercontent.com/92737759/170175354-7555906e-f01d-455d-bf22-77bcb5167f3c.png)
-![image](https://user-images.githubusercontent.com/92737759/170176126-4b856f3a-a28d-4aaa-8d27-5c5e3613b89b.png)
 
 ## 1. How to install nfs-server
 ### Step 1) Install the NFS kernel Server package
@@ -25,7 +24,7 @@ $ sudo chmod -R 777 /mnt/viot_nfsserver
 ### Step 4) Export the shared directory
 `$ sudo exportfs -a`
 ### Step 5) Configure the firewall rule for NFS Server
-`$ sudo ufw allow from 172.21.5.0/24 to any port nfs`
+`$ sudo ufw allow from 172.21.5.0/24 to any port nfs`  
 ![image](https://user-images.githubusercontent.com/92737759/170178194-86187ba5-bee6-41f0-9519-3d3fb8e51791.png)
 ### Step 6) Configure the Client system
 - ssh vào 3 máy khách để cấu hình
