@@ -58,6 +58,8 @@
 - Edit deployment `k edit deployment -n monitoring`  
 - image `172.20.1.22:443/quay-proxy/...` (quay.io)  
 - image `172.20.1.22:443/proxy-cache/...`  
+- `cd kube-prometheus/manifests`  
+- Edit tương tự c file yaml rồ apply lại
 
 
 
