@@ -45,16 +45,19 @@
 - Sử dụng git command để clone kube-prometheus về máy  
 `git clone https://github.com/prometheus-operator/kube-prometheus.git`  
 `cd kube-prometheus`  
-- Nếu hệ thống máy không có mạng ngoài cần clone qua hệ thống máy khác và scp sang cụm cần cài đặt:
+- Nếu hệ thống máy không có mạng ngoài cần clone qua hệ thống máy khác và scp sang cụm cần cài đặt:  
 `scp kube-prometheus.tar vht@172.21.5.17:~/`  
 ![image](https://user-images.githubusercontent.com/92737759/176376395-d25cbe65-528b-43af-9abb-4e35dce46df5.png)
 ### Step 2: Create monitoring namespace, CustomResourceDefinitions & operator pod
-`kubectl create -f manifests/setup`
+`kubectl create -f manifests/setup`  
 ![image](https://user-images.githubusercontent.com/92737759/176378572-e51284ab-29fa-4d38-b660-2c58c7057c2d.png)
 - Xác nhận các pods đang chạy:  
 ![image](https://user-images.githubusercontent.com/92737759/176382832-006eb7d4-8663-486b-abfd-d941ea835302.png)
-- Fix lỗi:
-
+- Fix lỗi:  
+![image](https://user-images.githubusercontent.com/92737759/176384588-fafa5d50-398c-4cdb-bfd3-67205e330e05.png)  
+- Edit deployment `k edit deployment -n monitoring`  
+- image `172.20.1.22:443/quay-proxy/...` (quay.io)  
+- image `172.20.1.22:443/proxy-cache/...`  
 
 
 
