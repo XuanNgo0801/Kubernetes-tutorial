@@ -42,16 +42,19 @@
 - **Target**: một target là định nghĩa một đối tượng sẽ được Prometheus đi lấy dữ liệu (scrape). Ví dụ như: nhãn nào sẽ được sử dụng cho đối tượng, hình thức chứng thực nào sử dụng hoặc các thông tin cần thiết để quá trình đi lấy dữ liệu ở đối tượng được diễn ra.
 ## 7.Setup
 ### Step 1: Clone kube-prometheus project
-- Sử dụng git command để clone kube-prometheus về máy 
+- Sử dụng git command để clone kube-prometheus về máy  
 `git clone https://github.com/prometheus-operator/kube-prometheus.git`  
 `cd kube-prometheus`  
 - Nếu hệ thống máy không có mạng ngoài cần clone qua hệ thống máy khác và scp sang cụm cần cài đặt:
-`scp kube-prometheus.tar vht@172.21.5.17:~/`
+`scp kube-prometheus.tar vht@172.21.5.17:~/`  
 ![image](https://user-images.githubusercontent.com/92737759/176376395-d25cbe65-528b-43af-9abb-4e35dce46df5.png)
 ### Step 2: Create monitoring namespace, CustomResourceDefinitions & operator pod
 `kubectl create -f manifests/setup`
 ![image](https://user-images.githubusercontent.com/92737759/176378572-e51284ab-29fa-4d38-b660-2c58c7057c2d.png)
-- Xá nhậ 
+- Xác nhận các pods đang chạy:  
+![image](https://user-images.githubusercontent.com/92737759/176382832-006eb7d4-8663-486b-abfd-d941ea835302.png)
+- Fix lỗi:
+
 
 
 
