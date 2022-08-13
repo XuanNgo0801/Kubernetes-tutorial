@@ -104,6 +104,16 @@ $ kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.ya
 - `kubectl get nodes -o wide`  
 ![image](https://user-images.githubusercontent.com/92737759/165884638-265f549f-dea9-4582-bf01-233b063fdca8.png)
 
+## Step 7: Cấu hình Worker Node tham gia Kubernetes Cluster
+```
+$ kubeadm token create --print-join-command
+$ kubeadm join 172.21.5.17:6443 --token xt9jyv.l34wvpt1b4ddbuse  
+--discovery-token-ca-cert-hash sha256:ef849283f86ec8f3658f22f6f2b25576baf875a257da8487b0673e9d154d0510
+$ k get node -A
+```
+![image](https://user-images.githubusercontent.com/92737759/184492192-95b86132-b08f-4bdd-9d0e-842b95757823.png)
+
+
 
 
 
