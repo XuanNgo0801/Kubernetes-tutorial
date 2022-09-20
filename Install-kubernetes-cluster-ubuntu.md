@@ -103,8 +103,45 @@ $ kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.ya
 - Confirm master node is ready:  
 - `kubectl get nodes -o wide`  
 ![image](https://user-images.githubusercontent.com/92737759/165884638-265f549f-dea9-4582-bf01-233b063fdca8.png)
+## Step 7: Add another master node to kubernetes cluster
+- Before we can join a new master node, we must have the cluster configuration file first. If you initialized your cluster using a config file, then you can use that file. If you don’t, we can get the cluster configuration file by executing this command:  
+`kubectl get cm kubeadm-config -n kube-system -o yaml`  
+file:///home/vht/Desktop/Screenshot_20220920_090101.png![image](https://user-images.githubusercontent.com/92737759/191150925-173fc47b-c989-4265-b9d2-bbf8964918fb.png)  
+- The marked text is the current k8s Cluster Configuration.
 
-## Step 7: Cấu hình Worker Node tham gia Kubernetes Cluster
+- Copy the marked text under ClusterConfiguration:, create a new file to store the configuration  
+`nano kubeadm-config.yaml`  
+- And then paste the marked text to this file.
+- Execute this command on the existing master node to upload control-plane certificates including the kubeadm configuration file.  
+
+`kubeadm init phase upload-certs --upload-certs --config kubeadm-config.yaml`  
+- The kubeadm-config.yaml is the Cluster configuration file we created earlier.
+
+- After executing the command, you will get an output like this  
+![image](https://user-images.githubusercontent.com/92737759/191151291-52f26fe3-828b-47c8-beeb-c64748d2da54.png)
+- The marked part above is the certificate key that we need to pass to the join command.
+
+- Still on the existing master node, print the join command  
+`kubeadm token create --print-join-command`  
+![image](https://user-images.githubusercontent.com/92737759/191151463-3d7818bd-e009-4952-a24a-9ae86ed39193.png)
+- Now, execute the join command with this format  
+
+- <basic join command> --control-plane --certificate-key <ceritifcate-key>  
+- If you faced with this issue:
+![image](https://user-images.githubusercontent.com/92737759/191151701-e6a7dd64-34a1-40f9-89b9-f6e794df71cc.png)
+- For anyone who is stuggling with this, this was resolved by updating kubeadm-config:
+
+`kubectl -n kube-system edit cm kubeadm-config`
+and adding:
+
+`controlPlaneEndpoint: 172.21.5.17:6443`// This IP is the IP address of master01  
+![image](https://user-images.githubusercontent.com/92737759/191152000-04948d4c-5d64-4933-9dee-26180244308c.png)
+
+`sudo kubeadm join 172.21.5.17:6443 --token sfh05k.q0psbozhb7xf9p9h --discovery-token-ca-cert-hash sha256:91ee0adf90d7e31bae330fc0538b74014af59980b147ac278d05d5e024f989e4 --control-plane --certificate-key b190b73e91d6a44f7a429d8a7fd732508614d035225cf54cc54a0ed40a2d63dd
+`
+![image](https://user-images.githubusercontent.com/92737759/191152204-e80f54b3-f533-4be2-a443-914ead4c5369.png)
+
+## Step 8: Cấu hình Worker Node tham gia Kubernetes Cluster
 ```
 $ kubeadm token create --print-join-command
 $ kubeadm join 172.21.5.17:6443 --token xt9jyv.l34wvpt1b4ddbuse  
