@@ -19,8 +19,9 @@
 ### 2.2. Hydra
 ![image](https://user-images.githubusercontent.com/92737759/170167156-6d334180-2c71-4b63-be7a-7896ac2449bd.png)
 ![image](https://user-images.githubusercontent.com/92737759/170166922-e58d3dc4-d234-44a8-9435-997b6e348069.png)
-![image](https://user-images.githubusercontent.com/92737759/170167033-3cc62daf-27c8-4899-990e-329fb22ce1cb.png)
-`helm install hydra -n ory .`
+![image](https://user-images.githubusercontent.com/92737759/170167033-3cc62daf-27c8-4899-990e-329fb22ce1cb.png)  
+`helm install hydra -n ory .`  
+`helm install hydra -f values.yaml -n ory .`  
 - Cần tạo một database làm nơi lưu trữ dữ liệu:
 `CREATE DATABASE hydra;`
 ```
